@@ -24,7 +24,7 @@ body{
 
 .weatherCard{
     background-color: #fff;
-    padding: 50px;
+    padding: 30px;
     border-radius: 20px;
     margin: 50px;
     box-shadow: 5px 1px 10px rgba(228, 227, 227, .9);

@@ -6,7 +6,10 @@ import '../css/styles.css'
 function App() {
 
     return (
-        <Hero />
+        <>
+            <Hero />
+            <p style={{"text-align": "center", "color": "gray"}}>Made by Charles Kasasira</p>
+        </>
     )
 }
 
