@@ -26,7 +26,9 @@ body{
     background-color: #fff;
     padding: 30px;
     border-radius: 20px;
-    margin: 50px;
+    /* margin: 50px; */
+    margin: 10px auto;
+    width: 80%;
     box-shadow: 5px 1px 10px rgba(228, 227, 227, .9);
 }
 
@@ -67,13 +69,13 @@ button:hover{
 }
 
 
+
 .iconTemp {
     display: grid; 
     grid-template-columns: 2fr 1fr; 
     grid-template-rows: 1fr; 
     gap: 0px 15px; 
-    grid-template-areas: 
-      ". ."; 
+    grid-template-areas: ". ."; 
   }
 
 
@@ -86,3 +88,12 @@ button:hover{
       "."
       "."; 
   }
+
+
+@media (min-width: 600px) {
+    .weatherCard{
+        width: 60%;
+    }
+}
+
+

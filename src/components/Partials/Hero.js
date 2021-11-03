@@ -1,33 +1,33 @@
-import React from 'react'
+import { useState } from 'react'
 import getData from '../helpers/fetchData'
 
 function Hero() {
 
-    const [stateLocation, setStateLocation] = React.useState('Kampala')
-    const [weatherInfo, setWeatherInfo] = React.useState({})
-    const [error, setError] = React.useState('')
+    const [stateLocation, setStateLocation] = useState('Kampala')
+    const [weatherInfo, setWeatherInfo] = useState({})
+    const [error, setError] = useState('')
 
     const handleInput = e => {
         const {value : inputLocation} = e.target
         setStateLocation(inputLocation)
-    } //console.log(e.target.value)
+    } 
 
     const onSubmit = async (e) => {
         e.preventDefault()
         setError('')
-        // console.log(e)
+        
         const response = await getData(stateLocation)
 
         if(response){
-            const {location: {name, country, lat, lon}} = response
+            const {location: {name, country, lat, lon, localtime}} = response
             const {current: {temp_c, temp_f, condition: {text, icon}}} = response
-            setWeatherInfo({name, country, lat, lon, temp_c, temp_f, text, icon})
+            setWeatherInfo({name, country, lat, lon, localtime, temp_c, temp_f, text, icon})
         } else {
             setError("Technical error, please try again.")
         }
     }
 
-    const {name, country, lat, lon, temp_c, temp_f, text, icon} = weatherInfo
+    const {name, country, lat, lon, localtime, temp_c, temp_f, text, icon} = weatherInfo
 
     return (
         <div>
@@ -44,10 +44,11 @@ function Hero() {
                 <button onClick={onSubmit}>Get Weather</button>
             </form>
 
-            <div className="weatherCard">
                 {
-                    !name ? <div style={{"height": "275px", "width": "275px"}}></div> :
-                    <div>
+                    !name 
+                    ? <div style={{"visibility": "hidden"}}></div> 
+                    :
+                    <div className="weatherCard">
                         <div className="iconTemp">
                             <div>
                                 { icon && <img src={icon} /> }
@@ -64,11 +65,10 @@ function Hero() {
                                         </div> <br />
                                           <br/>
                                         <b>Latitude:</b> {lat} <b>Longitutide:</b> {lon} <br />
+                                        <p>Date: {localtime}</p>
                                         
                     </div>
                 }
-                
-            </div>
 
         </div>
     )
