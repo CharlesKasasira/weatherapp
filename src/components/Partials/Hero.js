@@ -44,6 +44,10 @@ function Hero() {
                 <button onClick={onSubmit}>Get Weather</button>
             </form>
 
+            <div style={{"color": "red", "font-size": "1.3rem", "text-align": "center"}}>
+                {error}
+            </div>
+
                 {
                     !name 
                     ? <div style={{"visibility": "hidden"}}></div> 
