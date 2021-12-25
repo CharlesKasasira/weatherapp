@@ -37,11 +37,13 @@ function App() {
                 <button type='submit' className='btn btn-primary'>Search</button>
             </form>
 
-            <div style={{"color": "red", "font-size": "1.3rem", "text-align": "center"}}>
-                {error}
-            </div>
+            <div>{error}</div>
 
-                {weatherInfo.name ? <WeatherCard weatherInfo={weatherInfo}/> : <div style={{"visibility": "hidden"}}></div>}
+            <div className='cardContainer'>
+                <WeatherCard weatherInfo={weatherInfo}/>
+                {weatherInfo.name ? <WeatherCard weatherInfo={weatherInfo}/> : <WeatherCard weatherInfo={weatherInfo}/>}
+                <WeatherCard weatherInfo={weatherInfo}/>
+            </div>
 
         </div>
     )

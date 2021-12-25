@@ -23,7 +23,7 @@ function WeatherCard({weatherInfo}) {
                                         <b>Latitude:</b> {lat} <b>Longitutide:</b> {lon} <br />
                                         <p>Date: {localtime}</p>
                                         
-                    </div>
+        </div>
     )
 }
 
