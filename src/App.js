@@ -10,30 +10,27 @@ function App() {
 
     const handleInput = ({target}) => setStateLocation(target.value)
 
-    const onSubmit = async (e) => {
+    const onSubmit = async e => {
         e.preventDefault()
         setError('')
         const response = await getData(stateLocation)
 
         if(response){
-            const {location: {name, country, lat, lon, localtime}} = response
-            const {current: {temp_c, temp_f, condition: {text, icon}}} = response
+            const {location: {name, country, lat, lon, localtime}, current: {temp_c, temp_f, condition: {text, icon}}} = response
             setWeatherInfo({name, country, lat, lon, localtime, temp_c, temp_f, text, icon})
         } else {
             setError("Technical error, please try again.")
         }
     }
 
-    const {name, country, lat, lon, localtime, temp_c, temp_f, text, icon} = weatherInfo
-
     return (
         <div className='Container'>
             <h1>Weather App</h1>
             <p>Find weather information of any city or state</p>
+
             <form onSubmit={onSubmit}>
                 <input
                     type="text"
-                    id="inputField"
                     placeholder="Enter location here ..."
                     onChange={handleInput}
                 />
@@ -44,9 +41,7 @@ function App() {
                 {error}
             </div>
 
-                {
-                    !name ? <div style={{"visibility": "hidden"}}></div> : <WeatherCard weatherInfo={weatherInfo}/>
-                }
+                {weatherInfo.name ? <WeatherCard weatherInfo={weatherInfo}/> : <div style={{"visibility": "hidden"}}></div>}
 
         </div>
     )
