@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import getData from '../helpers/fetchData'
+import getData from './components/helpers/fetchData'
 
 function App() {
 
@@ -7,10 +7,7 @@ function App() {
     const [weatherInfo, setWeatherInfo] = useState({})
     const [error, setError] = useState('')
 
-    const handleInput = e => {
-        const {value : inputLocation} = e.target
-        setStateLocation(inputLocation)
-    } 
+    const handleInput = ({target}) => setStateLocation(target.value)
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -33,15 +30,14 @@ function App() {
         <div>
             <h1 style={{"text-align": "center"}}>Weather App</h1>
             <p style={{"text-align": "center"}}>Use this App to find the current weather info of a location</p>
-            <form onSubmit={onSubmit} action="#" method="post">
+            <form onSubmit={onSubmit}>
                 <input
                     type="text"
-                    name=""
                     id="inputField"
                     placeholder="Enter location here ..."
                     onChange={handleInput}
                 />
-                <button onClick={onSubmit}>Get Weather</button>
+                <button type='submit'>Get Weather</button>
             </form>
 
             <div style={{"color": "red", "font-size": "1.3rem", "text-align": "center"}}>
