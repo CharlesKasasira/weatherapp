@@ -1,12 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import getData from './components/helpers/fetchData'
+import { getKampalaData } from './components/helpers/fetchData'
 import WeatherCard from './components/Partials/Card/WeatherCard'
 
 function App() {
 
-    const [stateLocation, setStateLocation] = useState('Kampala')
+    const [stateLocation, setStateLocation] = useState("Kampala")
     const [weatherInfo, setWeatherInfo] = useState({})
+    const [kampalaInfo, setKampalaInfo] = useState({})
     const [error, setError] = useState('')
+
+    useEffect( async () => {
+        const response = await getKampalaData(stateLocation).then(res => res)
+        if(response){
+            const {location: {name, country, lat, lon, localtime}, current: {temp_c, temp_f, condition: {text, icon}}} = response
+            setKampalaInfo({name, country, lat, lon, localtime, temp_c, temp_f, text, icon})
+        } else {
+            setError("Technical error, please try again.")
+        }
+    },[])
+
+
+    
+
 
     const handleInput = ({target}) => setStateLocation(target.value)
 
@@ -40,9 +56,13 @@ function App() {
             <div>{error}</div>
 
             <div className='cardContainer'>
-                <WeatherCard weatherInfo={weatherInfo}/>
-                {weatherInfo.name ? <WeatherCard weatherInfo={weatherInfo}/> : <WeatherCard weatherInfo={weatherInfo}/>}
-                <WeatherCard weatherInfo={weatherInfo}/>
+                {weatherInfo.name ? <WeatherCard weatherInfo={weatherInfo}/> :                   
+                        <div className="weatherCard">    
+                            <p>Your search city weather will appear here</p>          
+                        </div>
+                   }
+                <WeatherCard weatherInfo={kampalaInfo}/>
+                <WeatherCard weatherInfo={kampalaInfo}/>
             </div>
 
         </div>
