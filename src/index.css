@@ -20,15 +20,7 @@ form input{
   border: 1px solid red;
 }
 
-.weatherCard{
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 10px 5px;
-  box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
-  height: 400px;
-  width: 300px;
-}
+
 
 
 @media (min-width: 800px) {

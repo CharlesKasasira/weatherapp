@@ -1,4 +1,4 @@
-import React from 'react'
+import './weatherCard.css'
 
 function WeatherCard({weatherInfo}) {
 
