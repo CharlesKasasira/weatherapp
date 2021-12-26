@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import getData from './components/helpers/fetchData'
-import WeatherCard from './components/Partials/WeatherCard'
+import WeatherCard from './components/Partials/Card/WeatherCard'
 
 function App() {
 

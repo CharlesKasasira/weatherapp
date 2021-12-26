@@ -7,3 +7,12 @@
     height: 400px;
     width: 300px;
   }
+
+  .weatherCard span{
+    margin: 10px 10px;
+  }
+
+  .weatherCard img{
+    width: 120px;
+    height: auto;
+  }
